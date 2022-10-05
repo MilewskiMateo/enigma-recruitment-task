@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Box, Container } from '@mui/material';
+import React, { useState } from 'react';
 
-function App() {
+import { CustomMap } from './components/CustomMap/CustomMap';
+import { FiltersSection } from './components/FiltersSection/FiltersSection';
+import { PhoneStatusEnum } from './utils/types/phones.types';
+
+export const App = () => {
+  const [speed, setSpeed] = useState<number[]>([10, 60]);
+  const [selectedStatuses, setSelectedStatuses] = useState({
+    'No Alarm': true,
+    'Device Offline': true,
+    'Flight Mode': true,
+    'Device Online': true,
+  });
+
+  const handleSpeedChange = (event: Event, newValue: number | number[]) => {
+    setSpeed(newValue as number[]);
+  };
+
+  const toggleStatus = (status: PhoneStatusEnum) => {
+    setSelectedStatuses((prevState) => ({ ...prevState, [status]: !prevState[status] }));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box sx={sx.appWrapper}>
+      <Container
+        maxWidth="xl"
+        sx={sx.contentWrapper}
+      >
+        <CustomMap
+          speed={speed}
+          selectedStatuses={selectedStatuses}
+        />
+        <FiltersSection
+          speed={speed}
+          selectedStatuses={selectedStatuses}
+          handleSpeedChange={handleSpeedChange}
+          toggleStatus={toggleStatus}
+        />
+      </Container>
+    </Box>
   );
-}
+};
 
-export default App;
+const sx = {
+  appWrapper: {
+    display: 'flex',
+    width: '100%',
+    height: '100vh',
+    backgroundImage: 'url("./img/background.jpg")',
+    backgroundSize: 'cover',
+  },
+  contentWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '120px',
+  },
+} as const;
