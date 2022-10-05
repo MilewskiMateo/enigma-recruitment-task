@@ -7,7 +7,7 @@ import { CustomMapProps } from './CustomMap.types';
 
 export const CustomMap = ({ speed, selectedStatuses }: CustomMapProps) => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_API_KEY as string,
+    googleMapsApiKey: '',
   });
 
   const [apiData, setApiData] = useState<PhonesResponse>();
