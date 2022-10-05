@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import { ApiMarkerData, PhoneStatusEnum } from '../../utils/types/phones.types';
+import { ApiMarkerData, PhoneStatusEnum } from '../../utils/types/phones.types'
 
 export const getIconDependingOnStatus = (status: PhoneStatusEnum) => {
   const base = {
@@ -11,42 +11,42 @@ export const getIconDependingOnStatus = (status: PhoneStatusEnum) => {
     scale: 2,
     strokeWeight: 2,
     fillColor: 'green',
-    strokeColor: 'darkgreen',
-  };
+    strokeColor: 'darkgreen'
+  }
   switch (status) {
     case PhoneStatusEnum.NoAlarm:
       return {
         ...base,
         fillColor: 'lightblue',
-        strokeColor: 'blue',
-      };
+        strokeColor: 'blue'
+      }
     case PhoneStatusEnum.DeviceOffline:
       return {
         ...base,
         fillColor: 'pink',
-        strokeColor: 'red',
-      };
+        strokeColor: 'red'
+      }
     case PhoneStatusEnum.DeviceOnline:
       return {
         ...base,
         fillColor: 'yellow',
-        strokeColor: 'gold',
-      };
+        strokeColor: 'gold'
+      }
     case PhoneStatusEnum.FlightMode:
       return {
         ...base,
         fillColor: 'orange',
-        strokeColor: 'darkorange',
-      };
+        strokeColor: 'darkorange'
+      }
     default:
-      return base;
+      return base
   }
-};
+}
 
 export const getDetailsAsElements = (data: ApiMarkerData) => {
   return Object.entries(data).map(([key, value]) => (
     <div key={key}>
       <strong>{key}</strong>: {value}
     </div>
-  ));
-};
+  ))
+}

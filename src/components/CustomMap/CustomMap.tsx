@@ -1,30 +1,30 @@
-import { GoogleMap, MarkerClusterer, useLoadScript } from '@react-google-maps/api';
-import React, { useEffect, useState } from 'react';
+import { GoogleMap, MarkerClusterer, useLoadScript } from '@react-google-maps/api'
+import React, { useEffect, useState } from 'react'
 
-import { PhoneStatusEnum, PhonesResponse } from '../../utils/types/phones.types';
-import { CustomMarker } from '../CustomMarker/CustomMarker';
-import { CustomMapProps } from './CustomMap.types';
+import { PhonesResponse } from '../../utils/types/phones.types'
+import { CustomMarker } from '../CustomMarker/CustomMarker'
+import { CustomMapProps } from './CustomMap.types'
 
 export const CustomMap = ({ speed, selectedStatuses }: CustomMapProps) => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: '',
-  });
+    googleMapsApiKey: ''
+  })
 
-  const [apiData, setApiData] = useState<PhonesResponse>();
+  const [apiData, setApiData] = useState<PhonesResponse>()
 
   useEffect(() => {
     fetch('https://phones-enigma.herokuapp.com/items')
-      .then((res) => res.json())
+      .then(async (res) => await res.json())
       .then((data) => {
-        setApiData(data as PhonesResponse);
+        setApiData(data as PhonesResponse)
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
-        console.error('Error:', error);
-      });
-  }, []);
+        console.error('Error:', error)
+      })
+  }, [])
 
-  if (!isLoaded) return <div>Loading...</div>;
+  if (!isLoaded) return <div>Loading...</div>
 
   return (
     <GoogleMap
@@ -40,7 +40,7 @@ export const CustomMap = ({ speed, selectedStatuses }: CustomMapProps) => {
                 (data) =>
                   Number(data.last_speed) >= speed[0] &&
                   Number(data.last_speed) <= speed[1] &&
-                  selectedStatuses[data.last_status as PhoneStatusEnum],
+                  selectedStatuses[data.last_status]
               )
               .map((location) => (
                 <CustomMarker
@@ -53,5 +53,5 @@ export const CustomMap = ({ speed, selectedStatuses }: CustomMapProps) => {
         )}
       </MarkerClusterer>
     </GoogleMap>
-  );
-};
+  )
+}

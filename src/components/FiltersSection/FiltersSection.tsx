@@ -1,13 +1,13 @@
-import { Box, Checkbox, FormControlLabel, Slider, Typography } from '@mui/material';
-import { deepOrange } from '@mui/material/colors';
-import React from 'react';
+import { Box, Checkbox, FormControlLabel, Slider, Typography } from '@mui/material'
+import { deepOrange } from '@mui/material/colors'
+import React from 'react'
 
-import { PhoneStatusEnum } from '../../utils/types/phones.types';
-import { FiltersSectionProps } from './FiltersSection.types';
+import { PhoneStatusEnum } from '../../utils/types/phones.types'
+import { FiltersSectionProps } from './FiltersSection.types'
 
 export const FiltersSection = ({ speed, selectedStatuses, handleSpeedChange, toggleStatus }: FiltersSectionProps) => {
   const checkboxes = (Object.keys(PhoneStatusEnum) as Array<keyof typeof PhoneStatusEnum>).map((key) => {
-    const status = PhoneStatusEnum[key];
+    const status = PhoneStatusEnum[key]
     return (
       <FormControlLabel
         key={status}
@@ -21,8 +21,8 @@ export const FiltersSection = ({ speed, selectedStatuses, handleSpeedChange, tog
         label={status}
         sx={sx.subtitle}
       />
-    );
-  });
+    )
+  })
 
   return (
     <Box sx={sx.filtersWrapper}>
@@ -57,8 +57,8 @@ export const FiltersSection = ({ speed, selectedStatuses, handleSpeedChange, tog
         <Box sx={sx.checkboxesWrapper}>{checkboxes}</Box>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
 const sx = {
   filtersWrapper: {
@@ -67,25 +67,25 @@ const sx = {
     justifyContent: 'end',
     flexDirection: 'column',
     paddingBottom: '40px',
-    gap: '40px',
+    gap: '40px'
   },
   title: {
     color: 'white',
-    fontWeight: '700',
+    fontWeight: '700'
   },
   subtitle: {
     fontWeight: '500',
-    color: 'white',
+    color: 'white'
   },
   checkboxesWrapper: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   checkbox: {
     color: deepOrange[800],
     '&.Mui-checked': {
-      color: deepOrange[600],
-    },
+      color: deepOrange[600]
+    }
   },
   slider: {
     color: deepOrange[600],
@@ -96,14 +96,14 @@ const sx = {
       backgroundColor: '#fff',
       border: '2px solid currentColor',
       '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
-        boxShadow: 'inherit',
+        boxShadow: 'inherit'
       },
       '&:before': {
-        display: 'none',
-      },
+        display: 'none'
+      }
     },
     '& .MuiSlider-valueLabel': {
-      backgroundColor: deepOrange[600],
-    },
-  },
-};
+      backgroundColor: deepOrange[600]
+    }
+  }
+}

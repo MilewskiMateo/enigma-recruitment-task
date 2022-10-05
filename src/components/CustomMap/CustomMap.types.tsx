@@ -1,6 +1,6 @@
-import { SelectedStatuses } from '../FiltersSection/FiltersSection.types';
+import { SelectedStatuses } from '../FiltersSection/FiltersSection.types'
 
 export interface CustomMapProps {
-  speed: number[];
-  selectedStatuses: SelectedStatuses;
+  speed: number[]
+  selectedStatuses: SelectedStatuses
 }
