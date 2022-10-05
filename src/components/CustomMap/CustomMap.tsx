@@ -29,7 +29,7 @@ export const CustomMap = ({ speed, selectedStatuses }: CustomMapProps) => {
   return (
     <GoogleMap
       zoom={4}
-      center={{ lat: 12.36703, lng: 12.36703 }}
+      center={{ lat: 7.959463, lng: 9.35654 }}
       mapContainerClassName="map-container"
     >
       <MarkerClusterer>
